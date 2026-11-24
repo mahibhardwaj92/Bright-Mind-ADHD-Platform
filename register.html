@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register | Bright Mind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --ink:#17272b; --muted:#627071; --paper:#f7f5ef; --card:#fffdf8; --coral:#e7674e; --coral-dark:#b94b37; --mint:#d9ece2; --line:#dbe2dc; --serif:"Fraunces",Georgia,serif; --sans:"DM Sans",Arial,sans-serif; }
+    body.dark { --ink:#f4f1e8; --muted:#b6c5bf; --paper:#142326; --card:#1d3335; --coral:#ef856e; --coral-dark:#ffad98; --mint:#294b47; --line:#3b5555; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); }
+    a { color:inherit; }
+    .site-header { max-width:1100px; margin:auto; padding:26px 28px; display:flex; justify-content:space-between; align-items:center; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:700; }
+    .brand-mark { display:grid; place-items:center; width:36px; height:36px; border-radius:50%; background:var(--coral); color:#fff; font:22px var(--serif); }
+    .back-link { color:var(--muted); font-size:14px; text-decoration:none; }
+    .theme-toggle { border:1px solid var(--line); border-radius:999px; padding:10px 13px; background:transparent; color:var(--ink); font:700 12px var(--sans); cursor:pointer; }
+    .shell { max-width:1040px; margin:auto; padding:60px 28px 90px; }
+    .eyebrow { margin:0 0 15px; color:var(--coral-dark); font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { max-width:660px; margin:0 0 16px; font:600 clamp(45px,7vw,72px)/.98 var(--serif); letter-spacing:-.05em; }
+    .lede { max-width:640px; color:var(--muted); line-height:1.65; }
+    .forms { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:42px; }
+    .card { padding:28px; border:1px solid var(--line); border-radius:12px; background:var(--card); }
+    .card:first-child { background:var(--mint); }
+    h2 { margin:0 0 9px; font:600 30px var(--serif); letter-spacing:-.04em; }
+    .card > p { min-height:48px; margin:0 0 22px; color:var(--muted); font-size:14px; line-height:1.55; }
+    form { display:grid; gap:11px; }
+    label { color:var(--muted); font-size:12px; font-weight:700; }
+    input, select {
+  width:100%;
+  margin-top:5px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:#fff;
+  color:#17272b;
+  font:14px var(--sans);
+}
+
+input::placeholder {
+  color:#627071;
+}
+    .password-field { position:relative; }
+    .password-field input { padding-right:44px; }
+    .password-toggle { position:absolute; right:10px; top:50%; transform:translateY(-50%); border:0; background:transparent; color:var(--muted); font:700 12px var(--sans); cursor:pointer; }
+    .button { border:0; border-radius:999px; padding:13px 18px; background:var(--coral); color:#fff; font:700 14px var(--sans); cursor:pointer; }
+    .button:hover { background:var(--coral-dark); }
+    .status { min-height:18px; margin:0; color:var(--coral-dark); font-size:12px; }
+
+    @media (max-width:700px) {
+      .site-header { padding:20px; }
+      .shell { padding:35px 20px 60px; }
+      .forms { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">b</span> bright mind
+    </a>
+
+    <div style="display:flex;align-items:center;gap:14px">
+      <button class="theme-toggle" id="theme-toggle" type="button">☾ Dark</button>
+      <a class="back-link" href="index.html">&larr; Home</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <p class="eyebrow">A next step, when you are ready</p>
+
+    <h1>Find the kind of support you need.</h1>
+
+    <p class="lede">
+      Bright Mind can help connect people looking for care with therapists who understand attention differences. Choose one path below.
+    </p>
+
+    <div class="forms">
+
+      <section class="card">
+        <h2>User registration</h2>
+
+        <p>
+          Leave your details and a member of our team can help you explore suitable support.
+        </p>
+
+        <form class="registration-form"
+              data-success="Thanks. We will help you explore therapist options.">
+
+          <label>
+            Name
+            <input name="name" required>
+          </label>
+
+          <label>
+            Email
+            <input name="email" type="email" required>
+          </label>
+
+          <label>
+            Password
+            <div class="password-field">
+              <input id="user-password"
+                     name="password"
+                     type="password"
+                     autocomplete="new-password"
+                     required>
+              <button class="password-toggle"
+                      type="button"
+                      data-target="user-password"
+                      aria-label="Show password">
+                Show
+              </button>
+            </div>
+          </label>
+
+          <label>
+            Age
+            <input name="age" type="number" min="1" required>
+          </label>
+
+          <label>
+            Location
+            <input name="location" required>
+          </label>
+
+          <label>
+            What kind of support are you looking for?
+            <select name="support">
+              <option>Individual therapy</option>
+              <option>ADHD assessment</option>
+              <option>Coaching and practical tools</option>
+            </select>
+          </label>
+
+          <button class="button" type="submit">
+            Request support
+          </button>
+
+          <p class="status" role="status"></p>
+
+        </form>
+      </section>
+
+
+      <section class="card">
+        <h2>I am a therapist</h2>
+
+        <p>
+          Join the Bright Mind network and make it easier for people to find qualified care.
+        </p>
+
+        <form class="registration-form"
+              data-success="Thanks. We will be in touch about joining our network.">
+
+          <label>
+            Name
+            <input name="name" required>
+          </label>
+
+          <label>
+            Email
+            <input name="email" type="email" required>
+          </label>
+
+          <label>
+            Password
+            <div class="password-field">
+              <input id="therapist-password"
+                     name="password"
+                     type="password"
+                     autocomplete="new-password"
+                     required>
+              <button class="password-toggle"
+                      type="button"
+                      data-target="therapist-password"
+                      aria-label="Show password">
+                Show
+              </button>
+            </div>
+          </label>
+
+          <label>
+            Specialization
+            <input name="specialization" required>
+          </label>
+
+          <label>
+            Phone
+            <input name="phone" type="tel" required>
+          </label>
+
+          <label>
+            Location
+            <input name="location" required>
+          </label>
+
+          <button class="button" type="submit">
+            Join the network
+          </button>
+
+          <p class="status" role="status"></p>
+
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+
+  <script>
+
+  document.querySelectorAll(".registration-form").forEach((form) => {
+
+    form.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const formData = new FormData(form);
+
+      const name = formData.get("name");
+      const email = formData.get("email");
+      const password = formData.get("password");
+      const age = formData.get("age");
+      const specialization = formData.get("specialization");
+      const phone = formData.get("phone");
+      const location = formData.get("location");
+
+      const isTherapist =
+        form.querySelector('[name="specialization"]') !== null;
+
+      let url;
+      let data;
+
+      if (isTherapist) {
+
+        url = "http://127.0.0.1:5000/therapist-register";
+
+        data = {
+          name,
+          email,
+          password,
+          specialization,
+          location,
+          phone
+        };
+
+      } else {
+
+        url = "http://127.0.0.1:5000/register";
+
+        data = {
+          name,
+          email,
+          password,
+          age
+        };
+      }
+
+      const status = form.querySelector(".status");
+
+      try {
+
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+
+          /*
+            IMPORTANT:
+            Only USER registration receives user_id.
+            Therapist registration must NOT overwrite user_id.
+          */
+
+          if (!isTherapist && result.user_id) {
+            localStorage.setItem("user_id", result.user_id);
+          }
+
+          status.textContent = result.message;
+          form.reset();
+
+        } else {
+
+          status.textContent =
+            result.message || "Registration failed.";
+
+        }
+
+      } catch (error) {
+
+        status.textContent =
+          "Could not connect to the server.";
+
+        console.error(error);
+      }
+
+    });
+
+  });
+
+
+  document.querySelectorAll(".password-toggle").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      const target =
+        document.getElementById(button.dataset.target);
+
+      const isPassword =
+        target.type === "password";
+
+      target.type =
+        isPassword ? "text" : "password";
+
+      button.textContent =
+        isPassword ? "Hide" : "Show";
+
+      button.setAttribute(
+        "aria-label",
+        isPassword ? "Hide password" : "Show password"
+      );
+
+    });
+
+  });
+
+  </script>
+
+  <script src="theme.js"></script>
+
+</body>
+</html>

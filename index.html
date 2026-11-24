@@ -1,0 +1,778 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bright Mind | Understanding ADHD</title>
+    <meta name="description" content="A thoughtful, practical introduction to ADHD and a private self-reflection quiz.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #17272b;
+            --muted: #5d6d6e;
+            --paper: #f7f5ef;
+            --cream: #fffdf8;
+            --coral: #e7674e;
+            --coral-dark: #b94b37;
+            --mint: #d9ece2;
+            --line: #dbe2dc;
+            --serif: "Fraunces", Georgia, serif;
+            --sans: "DM Sans", Arial, sans-serif;
+        }
+
+        body.dark {
+            --ink: #f4f1e8;
+            --muted: #b6c5bf;
+            --paper: #142326;
+            --cream: #1d3335;
+            --mint: #294b47;
+            --line: #3b5555;
+            --coral: #ef856e;
+            --coral-dark: #ffad98;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .site-header {
+            max-width: 1200px;
+            margin: auto;
+            padding: 26px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -.03em;
+        }
+
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--coral);
+            color: white;
+            font-family: var(--serif);
+            font-size: 22px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        nav a {
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: var(--coral-dark);
+        }
+
+        .theme-toggle {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 10px 13px;
+            background: transparent;
+            color: var(--ink);
+            font: 700 12px var(--sans);
+            cursor: pointer;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--coral);
+            color: var(--coral-dark);
+        }
+
+        .nav-cta {
+            border: 1px solid var(--ink);
+            border-radius: 999px;
+            padding: 11px 18px;
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .hero {
+            max-width: 1200px;
+            padding: 58px 32px 86px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: minmax(0, .92fr) minmax(380px, 1.08fr);
+            gap: 72px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            margin: 0 0 20px;
+            color: var(--coral-dark);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        h1, h2 {
+            font-family: var(--serif);
+            font-weight: 600;
+            letter-spacing: -.045em;
+            line-height: .99;
+        }
+
+        h1 {
+            max-width: 620px;
+            margin: 0 0 25px;
+            font-size: clamp(52px, 6vw, 82px);
+        }
+
+        .hero-copy {
+            max-width: 510px;
+            margin: 0 0 30px;
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 0;
+            border-radius: 999px;
+            padding: 15px 21px;
+            background: var(--coral);
+            color: white;
+            font: 700 15px var(--sans);
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 7px 18px rgba(183, 75, 55, .18);
+            transition: transform .2s, background .2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            background: var(--coral-dark);
+        }
+
+        .button span {
+            font-size: 20px;
+            line-height: 12px;
+        }
+
+        .hero-art {
+            position: relative;
+            min-height: 505px;
+        }
+
+        .hero-photo {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 77%;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 160px 18px 18px 18px;
+        }
+
+        .art-note {
+            position: absolute;
+            left: 0;
+            bottom: 24px;
+            width: 210px;
+            padding: 23px;
+            border-radius: 14px;
+            background: var(--mint);
+        }
+
+        .art-note strong {
+            display: block;
+            margin-bottom: 7px;
+            font-family: var(--serif);
+            font-size: 21px;
+        }
+
+        .art-note p {
+            margin: 0;
+            color: #4f6863;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .section {
+            border-top: 1px solid var(--line);
+        }
+
+        .intro {
+            max-width: 1200px;
+            margin: auto;
+            padding: 92px 32px;
+            display: grid;
+            grid-template-columns: .7fr 1.3fr;
+            gap: 100px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: clamp(38px, 4vw, 57px);
+        }
+
+        .intro-content p {
+            max-width: 680px;
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .intro-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tools-section {
+            background: #eef3ed;
+        }
+
+        .tools-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 84px 32px 92px;
+        }
+
+        .tools-heading {
+            display: grid;
+            grid-template-columns: .7fr 1.3fr;
+            gap: 100px;
+            align-items: end;
+            margin-bottom: 34px;
+        }
+
+        .tools-heading .eyebrow {
+            margin: 0;
+        }
+
+        .tools-heading h2 {
+            margin: 0;
+        }
+
+        .tools-heading > p:last-child {
+            max-width: 550px;
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .tool-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 245px;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--cream);
+            text-decoration: none;
+            transition: transform .2s, border-color .2s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--coral);
+        }
+
+        .tool-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 31px;
+            border-radius: 50%;
+            background: var(--coral);
+            color: white;
+            font-size: 22px;
+        }
+
+        .tool-card strong {
+            margin-bottom: 9px;
+            font: 600 26px var(--serif);
+            letter-spacing: -.03em;
+        }
+
+        .tool-card > span:not(.tool-icon) {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .tool-card b {
+            margin-top: auto;
+            padding-top: 22px;
+            color: var(--coral-dark);
+            font-size: 13px;
+        }
+
+        footer a {
+            color: var(--ink);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .quote-band {
+            background: var(--ink);
+            color: var(--cream);
+        }
+
+        .quote-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 32px;
+            display: flex;
+            gap: 52px;
+            align-items: center;
+        }
+
+        .quote-inner img {
+            width: 195px;
+            height: 195px;
+            flex: 0 0 auto;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: saturate(.8);
+        }
+
+        blockquote {
+            max-width: 650px;
+            margin: 0;
+            font: 600 clamp(25px, 3vw, 39px)/1.2 var(--serif);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 18px;
+            color: #a9c7be;
+            font: 13px var(--sans);
+            font-style: normal;
+            letter-spacing: .04em;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: auto;
+            padding: 32px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .therapist-search {
+            margin-top: 28px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--cream);
+        }
+
+        .therapist-search h3 {
+            margin: 0 0 8px;
+            font: 600 24px var(--serif);
+        }
+
+        .therapist-search p {
+            margin: 0 0 15px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 9px;
+        }
+
+        .search-row input {
+            flex: 1;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--paper);
+            color: var(--ink);
+            font: 14px var(--sans);
+        }
+
+        .search-button {
+            border: 0;
+            border-radius: 999px;
+            padding: 12px 17px;
+            background: var(--coral);
+            color: white;
+            font: 700 13px var(--sans);
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background: var(--coral-dark);
+        }
+
+        #therapist-results {
+            margin-top: 15px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .therapist-card {
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--paper);
+        }
+
+        .therapist-card strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 19px;
+        }
+
+        .therapist-card span {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .search-message {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 760px) {
+            .site-header {
+                padding: 20px;
+            }
+
+            nav a:not(.nav-cta) {
+                display: none;
+            }
+
+            .hero {
+                display: block;
+                padding: 35px 20px 64px;
+            }
+
+            h1 {
+                font-size: clamp(48px, 14vw, 72px);
+            }
+
+            .hero-art {
+                min-height: 360px;
+                margin-top: 46px;
+            }
+
+            .hero-photo {
+                height: 310px;
+                width: 80%;
+            }
+
+            .art-note {
+                bottom: 0;
+                width: 190px;
+                padding: 18px;
+            }
+
+            .intro {
+                display: block;
+                padding: 64px 20px;
+            }
+
+            .intro h2 {
+                margin-bottom: 30px;
+            }
+
+            .tools-inner {
+                padding: 64px 20px;
+            }
+
+            .tools-heading {
+                display: block;
+            }
+
+            .tools-heading h2 {
+                margin: 0 0 28px;
+            }
+
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-inner {
+                display: block;
+                padding: 58px 20px;
+            }
+
+            .quote-inner img {
+                width: 110px;
+                height: 110px;
+                margin-bottom: 28px;
+            }
+
+            footer {
+                padding: 24px 20px;
+                display: block;
+            }
+
+            footer span {
+                display: block;
+                margin-top: 8px;
+            }
+
+            .search-row {
+                display: grid;
+                grid-template-columns: 1fr auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">b</span> bright mind
+        </a>
+
+        <nav aria-label="Main navigation">
+            <a href="#understanding">Understanding ADHD</a>
+            <a href="#tools">Helpful tools</a>
+            <button class="theme-toggle" id="theme-toggle" type="button">☾ Dark</button>
+            <a class="nav-cta" href="register.html">Register</a>
+            <a class="nav-cta" href="login.html">Login</a>
+            <a class="nav-cta" href="quiz.html">Take quiz <span aria-hidden="true">&rarr;</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="eyebrow">A clearer way to understand your mind</p>
+
+                <h1>There is more than one way to pay attention.</h1>
+
+                <p class="hero-copy">
+                    ADHD is not a lack of effort or a character flaw. It is a different way the brain manages attention, energy, impulses, and motivation. Understanding the pattern is often the first step toward finding support that actually fits.
+                </p>
+
+                <a class="button" href="quiz.html">
+                    Take the quiz <span aria-hidden="true">&rarr;</span>
+                </a>
+            </div>
+
+            <div class="hero-art" aria-label="A person writing in a notebook">
+                <img class="hero-photo"
+                     src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1100&q=85"
+                     alt="A calm desk with a notebook, coffee, and a laptop">
+
+                <div class="art-note">
+                    <strong>Start with curiosity.</strong>
+                    <p>A self-reflection quiz can help you notice patterns. It cannot diagnose ADHD.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="understanding">
+            <div class="intro">
+                <h2>What is ADHD, really?</h2>
+
+                <div class="intro-content">
+                    <p>
+                        Attention-deficit/hyperactivity disorder (ADHD) is a neurodevelopmental condition that can affect the way someone regulates attention, activity, and impulses. It often begins in childhood, but many people are not recognized until adolescence or adulthood. ADHD can look different from person to person: one person may daydream and lose track of details, while another may feel restless, talk quickly, or act before thinking.
+                    </p>
+
+                    <p>
+                        The word “attention” can be misleading. People with ADHD are usually able to focus deeply when a task feels new, urgent, meaningful, or rewarding. The challenge is often directing and shifting attention consistently, especially when a task is repetitive or has a distant payoff. Working memory, time awareness, organization, sleep, and emotional regulation can be part of the picture too.
+                    </p>
+
+                    <p>
+                        ADHD is not a measure of intelligence, care, or potential. Helpful support may include practical systems, environmental changes, coaching, therapy, medication, or some combination. A qualified clinician is the right person to assess symptoms and consider other explanations. This quiz is a private starting point for reflection, not a medical diagnosis.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="helpful">
+            <div class="intro">
+                <h2>HOW WE ARE HELPFUL?</h2>
+
+                <div class="intro-content">
+                    <p><strong>How We Can Help</strong></p>
+
+                    <p>
+                        Our website is designed to be a screening and awareness tool, not a diagnostic platform. The 18-question assessment is intended to help you reflect on experiences that may be associated with ADHD and understand whether seeking professional guidance could be helpful.
+                    </p>
+
+                    <p>
+                        Your results do not mean that you have ADHD, and they cannot replace an evaluation by a qualified mental-health professional. Only a trained professional can properly assess and diagnose ADHD.
+                    </p>
+
+                    <p>
+                        Our main goal is to make taking the first step easier. If your responses suggest that professional guidance may be beneficial, our platform can help you find and connect with therapists in your locality. We also provide supportive tools such as a mood tracker, To-Do list, and Pomodoro timer to help you manage your daily routine.
+                    </p>
+
+                    <p>Your assessment is a starting point for awareness—not a diagnosis.</p>
+
+                    <div class="therapist-search">
+                        <h3>Find a therapist</h3>
+
+                        <p>Enter your location to see registered therapists available in that area.</p>
+
+                        <div class="search-row">
+                            <input id="location-search"
+                                   placeholder="Enter your location"
+                                   aria-label="Therapist location">
+
+                            <button class="search-button" id="search-therapists" type="button">
+                                Search
+                            </button>
+                        </div>
+
+                        <div id="therapist-results"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tools-section" id="tools">
+            <div class="tools-inner">
+                <div class="tools-heading">
+                    <p class="eyebrow">Small systems, kinder days</p>
+
+                    <h2>Helpful tools for the in-between moments.</h2>
+
+                    <p>
+                        Try a focused timer, make the next step visible, or leave yourself a note about how today felt. Your entries stay in this browser.
+                    </p>
+                </div>
+
+                <div class="tool-grid">
+                    <a class="tool-card" href="pomodoro.html">
+                        <span class="tool-icon" aria-hidden="true">◷</span>
+                        <strong>Pomodoro timer</strong>
+                        <span>Work in a gentle rhythm with focused sessions and real breaks.</span>
+                        <b>Open timer &rarr;</b>
+                    </a>
+
+                    <a class="tool-card" href="todo.html">
+                        <span class="tool-icon" aria-hidden="true">✓</span>
+                        <strong>To-do list</strong>
+                        <span>Turn an overwhelming day into a short, visible list of next steps.</span>
+                        <b>Open list &rarr;</b>
+                    </a>
+
+                    <a class="tool-card" href="mood.html">
+                        <span class="tool-icon" aria-hidden="true">☼</span>
+                        <strong>Mood tracker</strong>
+                        <span>Choose a mood for each day and write down what is on your mind.</span>
+                        <b>Open journal &rarr;</b>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote-band">
+            <div class="quote-inner">
+                <img
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=500&q=85"
+                    alt="Portrait of a smiling person">
+
+                <blockquote>
+                    “The goal is not to become a different person. It is to build a life that works with the brain you have.”
+                    <cite>BRIGHT MIND / A PLACE TO BEGIN</cite>
+                </blockquote>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <strong>bright mind</strong>
+        <span>
+            <a href="register.html">Register for support</a>
+            &middot; For education and self-reflection only.
+        </span>
+    </footer>
+
+    <script>
+        const searchButton = document.getElementById("search-therapists");
+        const locationInput = document.getElementById("location-search");
+        const results = document.getElementById("therapist-results");
+
+        searchButton.addEventListener("click", async () => {
+            const location = locationInput.value.trim();
+
+            if (!location) {
+                results.innerHTML = '<p class="search-message">Please enter a location.</p>';
+                return;
+            }
+
+            results.innerHTML = '<p class="search-message">Searching...</p>';
+
+            try {
+                const response = await fetch(
+                    `http://127.0.0.1:5000/therapists/${encodeURIComponent(location)}`
+                );
+
+                const data = await response.json();
+
+                if (!response.ok || !data.length) {
+                    results.innerHTML = '<p class="search-message">No therapists found in this location.</p>';
+                    return;
+                }
+
+                results.innerHTML = data.map(therapist => `
+                    <div class="therapist-card">
+                        <strong>${therapist.name}</strong>
+                        <span>Specialization: ${therapist.specialization}</span>
+                        <span>Location: ${therapist.location}</span>
+                        <span>Phone: ${therapist.phone}</span>
+                    </div>
+                `).join("");
+
+            } catch (error) {
+                console.error(error);
+                results.innerHTML = '<p class="search-message">Could not connect to the server.</p>';
+            }
+        });
+    </script>
+
+    <script src="theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Login | Bright Mind</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:#17272b;
+      --muted:#627071;
+      --paper:#f7f5ef;
+      --card:#fffdf8;
+      --coral:#e7674e;
+      --coral-dark:#b94b37;
+      --mint:#d9ece2;
+      --line:#dbe2dc;
+      --serif:"Fraunces",Georgia,serif;
+      --sans:"DM Sans",Arial,sans-serif;
+    }
+
+    body.dark {
+      --ink:#f4f1e8;
+      --muted:#b6c5bf;
+      --paper:#142326;
+      --card:#1d3335;
+      --coral:#ef856e;
+      --coral-dark:#ffad98;
+      --mint:#294b47;
+      --line:#3b5555;
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--sans);
+    }
+
+    a {
+      color:inherit;
+    }
+
+    .site-header {
+      max-width:1100px;
+      margin:auto;
+      padding:26px 28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .brand-mark {
+      display:grid;
+      place-items:center;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:var(--coral);
+      color:#fff;
+      font:22px var(--serif);
+    }
+
+    .back-link {
+      color:var(--muted);
+      font-size:14px;
+      text-decoration:none;
+    }
+
+    .theme-toggle {
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 13px;
+      background:transparent;
+      color:var(--ink);
+      font:700 12px var(--sans);
+      cursor:pointer;
+    }
+
+    .shell {
+      max-width:600px;
+      margin:auto;
+      padding:70px 28px 100px;
+    }
+
+    .eyebrow {
+      margin:0 0 15px;
+      color:var(--coral-dark);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    h1 {
+      margin:0 0 16px;
+      font:600 clamp(45px,7vw,72px)/.98 var(--serif);
+      letter-spacing:-.05em;
+    }
+
+    .lede {
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .card {
+      margin-top:35px;
+      padding:30px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--mint);
+    }
+
+    form {
+      display:grid;
+      gap:15px;
+    }
+
+    label {
+      color:var(--ink);
+      font-size:12px;
+      font-weight:700;
+    }
+
+    input {
+      width:100%;
+      margin-top:6px;
+      padding:13px;
+      border:1px solid var(--line);
+      border-radius:6px;
+      background:var(--card);
+      color:var(--ink);
+      font:14px var(--sans);
+    }
+
+    input:focus {
+      outline:2px solid var(--coral);
+      outline-offset:1px;
+    }
+
+    .button {
+      border:0;
+      border-radius:999px;
+      padding:13px 18px;
+      background:var(--coral);
+      color:#fff;
+      font:700 14px var(--sans);
+      cursor:pointer;
+    }
+
+    .button:hover {
+      background:var(--coral-dark);
+    }
+
+    .status {
+      min-height:18px;
+      margin:0;
+      color:var(--coral-dark);
+      font-size:12px;
+    }
+
+    .register-link {
+      margin-top:20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .register-link a {
+      color:var(--coral-dark);
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    @media (max-width:700px) {
+      .site-header {
+        padding:20px;
+      }
+
+      .shell {
+        padding:40px 20px 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+
+    <a class="brand" href="index.html">
+      <span class="brand-mark">b</span>
+      bright mind
+    </a>
+
+    <div style="display:flex;align-items:center;gap:14px">
+      <button class="theme-toggle" id="theme-toggle" type="button">
+        ☾ Dark
+      </button>
+
+      <a class="back-link" href="index.html">
+        &larr; Home
+      </a>
+    </div>
+
+  </header>
+
+  <main class="shell">
+
+    <p class="eyebrow">Welcome back</p>
+
+    <h1>Log in to Bright Mind.</h1>
+
+    <p class="lede">
+      Sign in to continue using your screening and well-being tools.
+    </p>
+
+    <section class="card">
+
+      <form id="login-form">
+
+        <label>
+          Email
+          <input
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+          >
+        </label>
+
+        <label>
+          Password
+          <input
+            name="password"
+            type="password"
+            required
+            autocomplete="current-password"
+          >
+        </label>
+
+        <button class="button" type="submit" id="login-button">
+          Log in
+        </button>
+
+        <p class="status" id="status"></p>
+
+      </form>
+
+      <p class="register-link">
+        Don't have an account?
+        <a href="register.html">Register here</a>
+      </p>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const form = document.getElementById("login-form");
+    const status = document.getElementById("status");
+    const loginButton = document.getElementById("login-button");
+
+    form.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const formData = new FormData(form);
+
+      const email = formData.get("email");
+      const password = formData.get("password");
+
+      status.textContent = "Logging in...";
+      loginButton.disabled = true;
+
+      try {
+
+        const response = await fetch(
+          "http://127.0.0.1:5000/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password
+            })
+          }
+        );
+
+        const result = await response.json();
+
+        if (response.ok) {
+
+          // Save logged-in user details
+          localStorage.setItem(
+            "user_id",
+            result.user.user_id
+          );
+
+          localStorage.setItem(
+            "user_name",
+            result.user.name
+          );
+
+          localStorage.setItem(
+            "user_email",
+            result.user.email
+          );
+
+          status.textContent = "Login successful! Welcome " + result.user.name;
+
+          setTimeout(() => {
+            window.location.href = "dashboard.html";
+          }, 700);
+
+        } else {
+
+          status.textContent =
+            result.message || "Invalid email or password.";
+
+        }
+
+      } catch (error) {
+
+        status.textContent =
+          "Could not connect to the server.";
+
+        console.error(error);
+
+      } finally {
+
+        loginButton.disabled = false;
+
+      }
+
+    });
+
+  </script>
+
+  <script src="theme.js"></script>
+
+</body>
+</html>

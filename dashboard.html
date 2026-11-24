@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Mind | Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #faf7f0;
+            --card: #ffffff;
+            --ink: #29352f;
+            --muted: #737c75;
+            --line: #e6e5dc;
+            --coral: #e88c79;
+            --mint: #dceee4;
+            --cream: #f5eee3;
+            --green: #668b72;
+            --sans: "DM Sans", sans-serif;
+            --serif: "Fraunces", serif;
+        }
+
+        body.dark {
+            --bg: #202a26;
+            --card: #2c3933;
+            --ink: #f3f1e9;
+            --muted: #c0c8c1;
+            --line: #46534c;
+            --mint: #344b40;
+            --cream: #3b453e;
+            --green: #a5c6aa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--sans);
+            transition: background .25s, color .25s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 7%;
+            background: var(--card);
+            border-bottom: 1px solid var(--line);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--coral);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-right a {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .logout {
+            background: var(--coral);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 11px 20px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1150px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            background: var(--mint);
+            padding: 35px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-family: var(--serif);
+            font-size: 35px;
+            margin: 0 0 10px;
+        }
+
+        .welcome p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: 25px;
+            margin: 0 0 18px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-bottom: 28px;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 25px;
+            min-width: 0;
+        }
+
+        .panel h2 {
+            font-family: var(--serif);
+            font-size: 23px;
+            margin: 0 0 18px;
+        }
+
+        .item {
+            padding: 13px 0;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .small {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .status {
+            font-size: 12px;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--sans);
+            margin-bottom: 12px;
+        }
+
+        .action {
+            border: none;
+            border-radius: 8px;
+            padding: 9px 13px;
+            background: var(--green);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .delete {
+            background: var(--coral);
+        }
+
+        .empty {
+            color: var(--muted);
+            font-size: 14px;
+            padding: 10px 0;
+        }
+
+        .message {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media(max-width: 700px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .welcome {
+                padding: 25px;
+            }
+
+            .welcome h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Bright <span>Mind.</span></div>
+
+    <div class="header-right">
+        <a href="index.html">Home</a>
+        <a href="quiz.html">Take Quiz</a>
+        <span id="headerUser"></span>
+        <button class="logout" onclick="logout()">Logout</button>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <h1>Welcome, <span id="userName">User</span>! 🌿</h1>
+        <p>Your personal space for self-reflection, wellness and productivity.</p>
+    </section>
+
+    <div class="grid">
+
+        <section class="panel">
+            <h2>🧠 ADHD Screening History</h2>
+            <div id="screeningHistory">
+                <p class="empty">Loading screening history...</p>
+            </div>
+            <p class="message">Screening results are for self-reflection only, not a medical diagnosis.</p>
+        </section>
+
+        <section class="panel">
+            <h2>🌸 Mood Tracker</h2>
+
+            <label for="moodSelect">How are you feeling today?</label>
+            <select id="moodSelect">
+                <option value="">Select your mood</option>
+                <option value="Happy">😊 Happy</option>
+                <option value="Calm">😌 Calm</option>
+                <option value="Neutral">😐 Neutral</option>
+                <option value="Sad">😔 Sad</option>
+                <option value="Anxious">😟 Anxious</option>
+                <option value="Stressed">😣 Stressed</option>
+            </select>
+
+            <button class="action" onclick="saveMood()">Save Mood</button>
+            <p id="moodMessage" class="message"></p>
+
+            <h3>Recent Mood History</h3>
+            <div id="moodHistory">
+                <p class="empty">Loading mood history...</p>
+            </div>
+        </section>
+
+    </div>
+
+    <section class="panel" style="margin-bottom:28px;">
+        <h2>📝 My To-Do List</h2>
+
+        <input type="text" id="taskInput" placeholder="Enter a new task...">
+        <button class="action" onclick="addTask()">+ Add Task</button>
+
+        <p id="taskMessage" class="message"></p>
+
+        <div id="taskList" style="margin-top:15px;">
+            <p class="empty">Loading tasks...</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    Bright Mind · Take care of your mind, one day at a time.
+</footer>
+
+<script>
+    const API = "http://127.0.0.1:5000";
+
+    const userId = localStorage.getItem("user_id");
+    const userName = localStorage.getItem("user_name") || "User";
+
+    // Check login
+    if (!userId || !Number.isInteger(Number(userId)) || Number(userId) <= 0) {
+        alert("Please login first!");
+        window.location.href = "login.html";
+    }
+
+    // Display username
+    document.getElementById("userName").textContent = userName;
+    document.getElementById("headerUser").textContent = "Hi, " + userName;
+
+    // Logout
+    function logout() {
+        localStorage.removeItem("user_id");
+        localStorage.removeItem("user_name");
+        localStorage.removeItem("user_email");
+
+        window.location.href = "login.html";
+    }
+
+    // Screening history
+    async function loadScreeningHistory() {
+        const box = document.getElementById("screeningHistory");
+
+        try {
+            const response = await fetch(`${API}/screening-results/${userId}`);
+
+            if (!response.ok) throw new Error("Unable to load history");
+
+            const results = await response.json();
+
+            box.innerHTML = "";
+
+            if (results.length === 0) {
+                box.innerHTML = '<p class="empty">No screening history available yet.</p>';
+                return;
+            }
+
+            results.forEach(result => {
+                const possibility = Number(result.prediction) === 1
+                    ? "Possibility of ADHD symptoms"
+                    : "No strong possibility indicated";
+
+                const date = new Date(result.date).toLocaleDateString("en-IN");
+
+                box.innerHTML += `
+                    <div class="item">
+                        <div class="item-info">
+                            <strong>${possibility}</strong>
+                            <div class="small">Date: ${date}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+        } catch (error) {
+            box.innerHTML = '<p class="empty">Could not load screening history. Please check backend.</p>';
+            console.error(error);
+        }
+    }
+
+    // Save mood
+    async function saveMood() {
+        const mood = document.getElementById("moodSelect").value;
+        const message = document.getElementById("moodMessage");
+
+        if (!mood) {
+            message.textContent = "Please select your mood first.";
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API}/mood`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    user_id: Number(userId),
+                    mood: mood
+                })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) throw new Error(result.message || "Could not save mood");
+
+            message.textContent = "Mood saved successfully! ❤️";
+            document.getElementById("moodSelect").value = "";
+
+            loadMoodHistory();
+
+        } catch (error) {
+            message.textContent = "Unable to save mood. Please check backend.";
+            console.error(error);
+        }
+    }
+
+    // Load mood history
+    async function loadMoodHistory() {
+        const box = document.getElementById("moodHistory");
+
+        try {
+            const response = await fetch(`${API}/mood/${userId}`);
+
+            if (!response.ok) throw new Error("Unable to load moods");
+
+            const moods = await response.json();
+
+            box.innerHTML = "";
+
+            if (moods.length === 0) {
+                box.innerHTML = '<p class="empty">No mood history available yet.</p>';
+                return;
+            }
+
+            moods.forEach(item => {
+                const date = new Date(item.date).toLocaleDateString("en-IN");
+
+                box.innerHTML += `
+                    <div class="item">
+                        <div class="item-info">
+                            <strong>${item.mood}</strong>
+                            <div class="small">${date}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+        } catch (error) {
+            box.innerHTML = '<p class="empty">Could not load mood history.</p>';
+            console.error(error);
+        }
+    }
+
+    // Add task
+    async function addTask() {
+        const input = document.getElementById("taskInput");
+        const message = document.getElementById("taskMessage");
+        const task = input.value.trim();
+
+        if (!task) {
+            message.textContent = "Please enter a task.";
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API}/tasks`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    user_id: Number(userId),
+                    task: task
+                })
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) throw new Error(result.message || "Could not add task");
+
+            input.value = "";
+            message.textContent = "Task added successfully!";
+            loadTasks();
+
+        } catch (error) {
+            message.textContent = "Unable to add task. Please check backend.";
+            console.error(error);
+        }
+    }
+
+    // Load tasks
+    async function loadTasks() {
+        const box = document.getElementById("taskList");
+
+        try {
+            const response = await fetch(`${API}/tasks/${userId}`);
+
+            if (!response.ok) throw new Error("Unable to load tasks");
+
+            const tasks = await response.json();
+
+            box.innerHTML = "";
+
+            if (tasks.length === 0) {
+                box.innerHTML = '<p class="empty">No tasks added yet.</p>';
+                return;
+            }
+
+            tasks.forEach(item => {
+                const completed = item.status === "Completed";
+
+                const taskElement = document.createElement("div");
+                taskElement.className = "item";
+
+                const info = document.createElement("div");
+                info.className = "item-info";
+
+                const taskName = document.createElement("strong");
+                taskName.textContent = item.task;
+
+                if (completed) {
+                    taskName.style.textDecoration = "line-through";
+                }
+
+                const status = document.createElement("div");
+                status.className = "small";
+                status.textContent = "Status: " + item.status;
+
+                info.appendChild(taskName);
+                info.appendChild(status);
+
+                const actions = document.createElement("div");
+
+                if (!completed) {
+                    const completeButton = document.createElement("button");
+                    completeButton.className = "action";
+                    completeButton.textContent = "Complete";
+                    completeButton.onclick = () => completeTask(item.task_id);
+                    actions.appendChild(completeButton);
+                }
+
+                const deleteButton = document.createElement("button");
+                deleteButton.className = "action delete";
+                deleteButton.style.marginLeft = "7px";
+                deleteButton.textContent = "Delete";
+                deleteButton.onclick = () => deleteTask(item.task_id);
+
+                actions.appendChild(deleteButton);
+
+                taskElement.appendChild(info);
+                taskElement.appendChild(actions);
+
+                box.appendChild(taskElement);
+            });
+
+        } catch (error) {
+            box.innerHTML = '<p class="empty">Could not load tasks. Please check backend.</p>';
+            console.error(error);
+        }
+    }
+
+    // Complete task
+    async function completeTask(taskId) {
+        try {
+            const response = await fetch(`${API}/tasks/${taskId}/complete`, {
+                method: "PUT"
+            });
+
+            if (!response.ok) throw new Error("Could not complete task");
+
+            loadTasks();
+
+        } catch (error) {
+            alert("Unable to complete task.");
+            console.error(error);
+        }
+    }
+
+    // Delete task
+    async function deleteTask(taskId) {
+        if (!confirm("Are you sure you want to delete this task?")) return;
+
+        try {
+            const response = await fetch(`${API}/tasks/${taskId}`, {
+                method: "DELETE"
+            });
+
+            if (!response.ok) throw new Error("Could not delete task");
+
+            loadTasks();
+
+        } catch (error) {
+            alert("Unable to delete task.");
+            console.error(error);
+        }
+    }
+
+    // Enter key to add task
+    document.getElementById("taskInput").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            addTask();
+        }
+    });
+
+    // Initial loading
+    if (userId && Number.isInteger(Number(userId)) && Number(userId) > 0) {
+        loadScreeningHistory();
+        loadMoodHistory();
+        loadTasks();
+    }
+</script>
+
+<script src="theme.js"></script>
+
+</body>
+</html>

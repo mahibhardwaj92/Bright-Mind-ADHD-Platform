@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Take the quiz | Bright Mind</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink:#17272b;
+      --muted:#627071;
+      --paper:#f7f5ef;
+      --card:#fffdf8;
+      --coral:#e7674e;
+      --coral-dark:#b94b37;
+      --mint:#d9ece2;
+      --line:#dbe2dc;
+      --serif:"Fraunces",Georgia,serif;
+      --sans:"DM Sans",Arial,sans-serif;
+    }
+
+    body.dark {
+      --ink:#f4f1e8;
+      --muted:#b6c5bf;
+      --paper:#142326;
+      --card:#1d3335;
+      --coral:#ef856e;
+      --coral-dark:#ffad98;
+      --mint:#294b47;
+      --line:#3b5555;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--sans);
+    }
+
+    a { color:inherit; }
+
+    .site-header {
+      max-width:1200px;
+      margin:auto;
+      padding:26px 32px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:-.03em;
+    }
+
+    .brand-mark {
+      display:grid;
+      place-items:center;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:var(--coral);
+      color:white;
+      font:22px var(--serif);
+    }
+
+    .back-link {
+      color:var(--muted);
+      font-size:14px;
+      text-decoration:none;
+    }
+
+    .back-link:hover { color:var(--coral-dark); }
+
+    .theme-toggle {
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 13px;
+      background:transparent;
+      color:var(--ink);
+      font:700 12px var(--sans);
+      cursor:pointer;
+    }
+
+    .quiz-shell {
+      max-width:850px;
+      margin:0 auto;
+      padding:58px 24px 90px;
+    }
+
+    .intro {
+      max-width:660px;
+      margin-bottom:38px;
+    }
+
+    .eyebrow {
+      margin:0 0 16px;
+      color:var(--coral-dark);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    h1 {
+      margin:0 0 17px;
+      font:600 clamp(46px,7vw,72px)/.98 var(--serif);
+      letter-spacing:-.05em;
+    }
+
+    .intro p {
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .warning {
+      margin:28px 0 34px;
+      padding:19px 21px;
+      border-left:4px solid var(--coral);
+      background:#fff1ec;
+      color:#70463d;
+      line-height:1.6;
+    }
+
+    .warning strong { color:var(--ink); }
+
+    .progress-wrap { margin:36px 0 28px; }
+
+    .progress-label {
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:9px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    progress {
+      display:block;
+      width:100%;
+      height:8px;
+      border:0;
+      border-radius:99px;
+      overflow:hidden;
+      accent-color:var(--coral);
+    }
+
+    progress::-webkit-progress-bar { background:#e5e8e1; }
+
+    progress::-webkit-progress-value {
+      background:var(--coral);
+      border-radius:99px;
+    }
+
+    fieldset {
+      min-width:0;
+      margin:0 0 18px;
+      padding:26px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--card);
+    }
+
+    legend {
+      max-width:100%;
+      padding:0 5px;
+      font:600 21px/1.3 var(--serif);
+    }
+
+    .question-number {
+      display:block;
+      margin-bottom:8px;
+      color:var(--coral-dark);
+      font:700 12px var(--sans);
+      letter-spacing:.08em;
+    }
+
+    .options {
+      display:grid;
+      gap:10px;
+      margin-top:20px;
+    }
+
+    .option {
+      width:100%;
+      box-sizing:border-box;
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-height:48px;
+      padding:12px 15px;
+      border:1px solid var(--line);
+      border-radius:7px;
+      color:var(--muted);
+      cursor:pointer;
+      line-height:1.4;
+      overflow-wrap:break-word;
+      transition:border-color .15s, background .15s, color .15s;
+    }
+
+    .option:hover {
+      border-color:var(--coral);
+      color:var(--ink);
+    }
+
+    .option:has(input:checked) {
+      border-color:var(--coral);
+      background:#fff1ec;
+      color:var(--ink);
+    }
+
+    .option input {
+      width:17px;
+      height:17px;
+      margin:0;
+      accent-color:var(--coral);
+    }
+
+    .actions {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-top:28px;
+    }
+
+    .button {
+      border:0;
+      border-radius:999px;
+      padding:15px 22px;
+      background:var(--coral);
+      color:#fff;
+      font:700 15px var(--sans);
+      cursor:pointer;
+    }
+
+    .button:hover { background:var(--coral-dark); }
+
+    .button:disabled {
+      cursor:not-allowed;
+      opacity:.5;
+    }
+
+    .note {
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    .result {
+      display:none;
+      padding:34px;
+      border-radius:12px;
+      background:var(--mint);
+    }
+
+    .result.visible { display:block; }
+
+    .result h2 {
+      margin:0 0 12px;
+      font:600 35px var(--serif);
+      letter-spacing:-.04em;
+    }
+
+    .result p {
+      max-width:610px;
+      margin:0 0 23px;
+      color:#4f6863;
+      line-height:1.65;
+    }
+
+    .score-message {
+      margin-bottom:12px !important;
+      color:var(--ink) !important;
+      font-weight:700;
+    }
+
+    .outline-button {
+      display:inline-block;
+      padding:12px 17px;
+      border:1px solid var(--ink);
+      border-radius:999px;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .support {
+      margin-top:30px;
+      padding-top:28px;
+      border-top:1px solid rgba(23,39,43,.2);
+    }
+
+    .support h3 {
+      margin:0 0 8px;
+      font:600 28px var(--serif);
+      letter-spacing:-.03em;
+    }
+
+    .support > p { margin-bottom:20px; }
+
+    .support-options {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .support-card {
+      padding:20px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:var(--card);
+    }
+
+    .support-card h4 {
+      margin:0 0 7px;
+      font-size:16px;
+    }
+
+    .support-card p {
+      margin:0 0 15px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .support-card form {
+      display:grid;
+      gap:9px;
+    }
+
+    .support-card input {
+      width:100%;
+      padding:11px 12px;
+      border:1px solid var(--line);
+      border-radius:6px;
+      background:white;
+      color:var(--ink);
+      font:14px var(--sans);
+    }
+
+    .support-card .button {
+      padding:11px 15px;
+      font-size:13px;
+    }
+
+    .form-status {
+      min-height:18px;
+      margin:0;
+      color:var(--coral-dark);
+      font-size:12px;
+    }
+
+    @media (max-width:700px) {
+      .support-options { grid-template-columns:1fr; }
+    }
+
+    @media (max-width:600px) {
+      .site-header { padding:20px; }
+      .quiz-shell { padding:35px 16px 60px; }
+      fieldset { padding:20px 16px; }
+      legend { font-size:19px; }
+      .actions {
+        align-items:flex-start;
+        flex-direction:column-reverse;
+      }
+      .button { width:100%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">b</span> bright mind
+    </a>
+
+    <div style="display:flex;align-items:center;gap:14px">
+      <button class="theme-toggle" id="theme-toggle" type="button">☾ Dark</button>
+      <a class="back-link intro-navigation" href="index.html">&larr; Back to introduction</a>
+    </div>
+  </header>
+
+  <main class="quiz-shell">
+
+    <div class="intro">
+      <p class="eyebrow">A moment of self-reflection</p>
+
+      <h1>How does your attention move?</h1>
+
+      <p>
+        Answer based on how you have generally felt over the last six months.
+        There are no right answers. Choose the option that feels most like your
+        everyday experience.
+      </p>
+
+      <div class="warning">
+        <strong>Please read first:</strong>
+        This quiz may help you understand yourself and notice patterns, but it
+        cannot diagnose ADHD. For a correct diagnosis, you need to speak with
+        a qualified therapist or other licensed healthcare professional.
+      </div>
+    </div>
+
+    <form id="quiz-form">
+
+      <div class="progress-wrap">
+        <div class="progress-label">
+          <span id="progress-text">0 of 18 answered</span>
+          <span>about 4 minutes</span>
+        </div>
+
+        <progress id="progress" value="0" max="18"></progress>
+      </div>
+
+      <div id="questions"></div>
+
+      <div class="actions">
+        <span class="note">
+          Your answers are submitted securely to generate your screening result.
+        </span>
+
+        <button class="button" type="submit">See reflection &rarr;</button>
+      </div>
+
+    </form>
+
+    <section class="result" id="result" aria-live="polite">
+
+      <h2>Thanks for taking a thoughtful pause.</h2>
+
+      <p class="score-message" id="score-message"></p>
+
+      <p id="result-detail">
+        This reflection can help you describe patterns to yourself or a
+        professional, but it cannot confirm or rule out ADHD. A qualified
+        therapist or healthcare provider is necessary for diagnosis.
+      </p>
+
+      <a class="outline-button intro-navigation" href="index.html">
+        Read about ADHD
+      </a>
+
+      <div class="support">
+
+        <h3>Find support that fits.</h3>
+
+        <p>
+          Connect with Bright Mind when you are ready. Choose the path that
+          describes you.
+        </p>
+
+        <div class="support-options">
+
+          <div class="support-card">
+
+            <h4>I am looking for a therapist</h4>
+
+            <p>
+              Tell us where to reach you and we will help you explore therapist
+              options.
+            </p>
+
+            <form class="registration-form"
+              data-success="Thanks. We will help you find a therapist.">
+
+              <input name="name" type="text"
+                placeholder="Your name" aria-label="Your name" required>
+
+              <input name="email" type="email"
+                placeholder="Email address" aria-label="Email address" required>
+
+              <button class="button" type="submit">Request support</button>
+
+              <p class="form-status" role="status"></p>
+            </form>
+
+          </div>
+
+          <div class="support-card">
+
+            <h4>I am a therapist</h4>
+
+            <p>
+              Join our network and make it easier for people to find qualified
+              support.
+            </p>
+
+            <form class="registration-form"
+              data-success="Thanks. We will be in touch about joining our network.">
+
+              <input name="name" type="text"
+                placeholder="Your name" aria-label="Your name" required>
+
+              <input name="email" type="email"
+                placeholder="Professional email" aria-label="Professional email" required>
+
+              <button class="button" type="submit">Join the network</button>
+
+              <p class="form-status" role="status"></p>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+
+    // 18 ADHD screening questions
+    const questions = [
+
+      "How often do you have difficulty finishing the final details of a task after completing the difficult part?",
+
+      "How often do you find it difficult to organize tasks that require planning?",
+
+      "How often do you forget appointments or important responsibilities?",
+
+      "How often do you delay starting a task that requires a lot of mental effort?",
+
+      "How often do you fidget with your hands or feet when you have to sit for a long time?",
+
+      "How often do you feel overly active, as if you are always driven to keep moving?",
+
+      "How often do you make careless mistakes while working on boring or difficult tasks?",
+
+      "How often do you have difficulty maintaining your attention during boring or repetitive tasks?",
+
+      "How often do you have difficulty concentrating when someone is speaking directly to you?",
+
+      "How often do you misplace or have difficulty finding things you need at home or at work?",
+
+      "How often are you distracted by activity or noise around you?",
+
+      "How often do you leave your seat when you are expected to remain seated?",
+
+      "How often do you feel restless or find it difficult to stay still?",
+
+      "How often do you find it difficult to relax when you have free time?",
+
+      "How often do you find yourself talking too much during social situations?",
+
+      "How often do you finish other people's sentences before they finish speaking?",
+
+      "How often do you have difficulty waiting for your turn?",
+
+      "How often do you interrupt others while they are busy or speaking?"
+
+    ];
+
+    const choices = ["Never", "Rarely", "Sometimes", "Often", "Very often"];
+
+    const questionsEl = document.getElementById("questions");
+
+    questions.forEach((question, index) => {
+
+      const fieldset = document.createElement("fieldset");
+
+      fieldset.innerHTML = `
+        <legend>
+          <span class="question-number">
+            ${String(index + 1).padStart(2, "0")}
+          </span>
+          ${question}
+        </legend>
+
+        <div class="options">
+          ${choices.map((choice, choiceIndex) => `
+            <label class="option">
+              <input type="radio"
+                name="question-${index}"
+                value="${choiceIndex}">
+              <span>${choice}</span>
+            </label>
+          `).join("")}
+        </div>
+      `;
+
+      questionsEl.appendChild(fieldset);
+
+    });
+
+    const form = document.getElementById("quiz-form");
+
+    const progress = document.getElementById("progress");
+
+    const progressText = document.getElementById("progress-text");
+
+
+    // Update progress
+    form.addEventListener("change", () => {
+
+      const answered = new FormData(form);
+
+      let count = 0;
+
+      questions.forEach((_, index) => {
+        if (answered.has(`question-${index}`)) count++;
+      });
+
+      progress.value = count;
+
+      progressText.textContent =
+        `${count} of ${questions.length} answered`;
+
+    });
+
+
+    // Submit quiz and get prediction from backend
+    form.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const answered = new FormData(form);
+
+      const missing = questions.findIndex(
+        (_, index) => !answered.has(`question-${index}`)
+      );
+
+      if (missing !== -1) {
+
+        document.querySelectorAll("fieldset")[missing].scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        document.querySelectorAll("fieldset")[missing].style.borderColor =
+          "var(--coral)";
+
+        return;
+      }
+
+      const userId = localStorage.getItem("user_id");
+
+      if (!userId) {
+        alert("Please login first.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const answers = [];
+
+      questions.forEach((_, index) => {
+
+        const value = Number(answered.get(`question-${index}`));
+
+        // Frontend values 0-4 ko backend ke 1-5 me convert karna
+        answers.push(value + 1);
+
+      });
+
+      try {
+
+        const response = await fetch("http://127.0.0.1:5000/predict", {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            user_id: Number(userId),
+            answers: answers
+          })
+
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+
+          const scoreMessage = document.getElementById("score-message");
+
+          scoreMessage.textContent =
+            result.screening_result +
+            " This is a screening result, not a medical diagnosis.";
+
+          form.style.display = "none";
+
+          document.getElementById("result").classList.add("visible");
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+
+        } else {
+
+          alert(result.message || "Unable to get screening result.");
+
+        }
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert("Could not connect to the server.");
+
+      }
+
+    });
+
+
+    // IMPORTANT: Navigation based on login status
+    const introDestination = localStorage.getItem("user_id")
+      ? "dashboard.html"
+      : "index.html";
+
+    document.querySelectorAll(".intro-navigation").forEach((link) => {
+      link.href = introDestination;
+    });
+
+
+    // Support forms
+    document.querySelectorAll(".registration-form").forEach((registrationForm) => {
+
+      registrationForm.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        registrationForm.querySelector(".form-status").textContent =
+          registrationForm.dataset.success;
+
+        registrationForm.reset();
+
+      });
+
+    });
+
+  </script>
+
+  <script src="theme.js"></script>
+
+</body>
+</html>
